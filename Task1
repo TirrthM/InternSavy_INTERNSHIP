@@ -1,0 +1,101 @@
+// A simple calculator 
+
+import java.awt.*;
+import java.awt.event.*;
+
+public class Task1 extends Frame implements ActionListener
+{
+    Label l1,l2,l3;
+    TextField t1,t2,t3;
+    Button add,sub,div,mul,exit; 
+
+    public Task1()
+    {
+        l1 = new Label("Enter first number: ");
+        l2 = new Label("Enter second number: ");
+        l3 = new Label("Result: ");
+        t1 = new TextField(10);
+        t2 = new TextField(10);
+        t3 = new TextField(30);
+        add = new Button("+");
+        sub = new Button("-");
+        mul = new Button("*");
+        div = new Button("/");
+        exit = new Button("Exit");
+
+        add.addActionListener(this);
+        sub.addActionListener(this);
+        mul.addActionListener(this);
+        div.addActionListener(this);
+        exit.addActionListener(this);
+
+        setLayout(new FlowLayout(FlowLayout.CENTER));
+        setSize(1000,500);
+        setVisible(true);
+        t3.setEditable(false);
+        setTitle("Calculator");
+
+        add(l1);
+        add(t1);
+        add(l2);
+        add(t2);
+        add(l3);
+        add(t3);
+        add(add);
+        add(sub);
+        add(mul);
+        add(div);
+        add(exit);
+
+
+        addWindowListener(new WindowAdapter() 
+            {
+                public void windowClosing(WindowEvent e)
+                {
+                    dispose();
+                }
+            });
+    }
+
+public void actionPerformed(ActionEvent e)
+{
+    Button btn = (Button) e.getSource();
+    int num1 = Integer.parseInt(t1.getText());
+    int num2 = Integer.parseInt(t2.getText());
+
+    if(btn == add)
+    {
+        int ans1 = num1+num2;
+        t3.setText("The sum is: "+ ans1);
+    }
+
+    else if(btn == sub) 
+    {
+        int ans2 = num1-num2;
+        t3.setText("The difference is: "+ ans2);
+    }
+
+    else if(btn == mul)
+    {
+        int ans3 = num1*num2;
+        t3.setText("The product is: "+ ans3);
+    }
+
+    else if(btn == div)
+    {
+        int ans4 = num1/num2;
+        t3.setText("The division is: "+ ans4);
+    }
+
+    else if(btn == exit)
+    {
+        System.exit(0);
+    } 
+}
+
+public static void main(String args[])
+    {
+        new Task1();
+    }
+
+}
